@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const allValues = formData.getAll(name);
             console.log(`Field "${name}" has ${allValues.length} value(s):`, allValues);
             if (allValues.length > 1) {
-                // Multiple values - join them with comma
-                responses[name] = allValues.join(', ');
+                // Multiple values - join them with pipe
+                responses[name] = allValues.join(' | ');
             } else if (allValues.length === 1) {
                 // Single value
                 responses[name] = allValues[0];
@@ -66,10 +66,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
         for (const [key, value] of Object.entries(responses)) {
             const question = questions[key];
+
+            // Check if value contains multiple selections (has pipe separator)
+            let answerHTML;
+            if (typeof value === 'string' && value.includes(' | ')) {
+                const values = value.split(' | ');
+
+                // Filter out "Todos" or "Todas las anteriores" if present
+                const filteredValues = values.filter(v =>
+                    v !== 'Todos' &&
+                    v !== 'Todas las anteriores'
+                );
+
+                // If more than 1 option (after filtering), show as bullet list
+                if (filteredValues.length > 1) {
+                    answerHTML = '<ul>' + filteredValues.map(v => `<li>${v}</li>`).join('') + '</ul>';
+                } else {
+                    answerHTML = filteredValues[0] || value;
+                }
+            } else {
+                answerHTML = value;
+            }
+
             summaryHTML += `
                 <div class="summary-item">
                     <div class="summary-question">${question}</div>
-                    <div class="summary-answer">${value}</div>
+                    <div class="summary-answer">${answerHTML}</div>
                 </div>
             `;
         }
