@@ -25,6 +25,39 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        // Validate checkbox groups - at least one must be selected in each visible group
+        const checkboxGroups = document.querySelectorAll('.checkbox-group');
+        for (const group of checkboxGroups) {
+            // Skip hidden sections
+            const section = group.closest('.question-section');
+            if (section && section.classList.contains('hidden')) {
+                continue;
+            }
+
+            const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+            if (checkboxes.length > 0) {
+                const isAnyChecked = Array.from(checkboxes).some(cb => cb.checked);
+                if (!isAnyChecked) {
+                    // Find or create error message element
+                    let errorMsg = group.parentElement.querySelector('.checkbox-error');
+                    if (!errorMsg) {
+                        errorMsg = document.createElement('div');
+                        errorMsg.className = 'error-message checkbox-error';
+                        errorMsg.style.color = '#e74c3c';
+                        errorMsg.style.fontSize = '14px';
+                        errorMsg.style.marginTop = '8px';
+                        group.parentElement.appendChild(errorMsg);
+                    }
+                    errorMsg.textContent = 'Por favor selecciona al menos una opción.';
+                    errorMsg.style.display = 'block';
+
+                    // Scroll to the error
+                    section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+            }
+        }
+
         const formData = new FormData(form);
         const responses = {};
 
@@ -111,7 +144,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Clear error on input
-    document.getElementById('conversation').addEventListener('input', function() {
-        textError.style.display = 'none';
+    const conversationField = document.getElementById('conversation');
+    if (conversationField) {
+        conversationField.addEventListener('input', function() {
+            if (textError) {
+                textError.style.display = 'none';
+            }
+        });
+    }
+
+    // Clear checkbox error messages when any checkbox in a group is clicked
+    const allCheckboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
+    allCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const group = this.closest('.checkbox-group');
+            if (group) {
+                const errorMsg = group.parentElement.querySelector('.checkbox-error');
+                if (errorMsg) {
+                    errorMsg.style.display = 'none';
+                }
+            }
+        });
     });
 });
