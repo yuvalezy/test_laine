@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 2 - Despues de ver el video, realiza este ejercicio:</title>
+    <link rel="stylesheet" href="survey.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Despues de ver el video, realiza este ejercicio:</h1>
+        <form id="pollForm">
+            <!-- Q1 -->
+            <div class="question-section">
+                <div class="question-title">Q1: ¿Qué es lo que la mayoría de la gente busca?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q1_1" name="q1" value="Dinero" required>
+                        <label for="q1_1">Dinero</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q1_2" name="q1" value="Felicidad" >
+                        <label for="q1_2">Felicidad</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q1_3" name="q1" value="Paz" >
+                        <label for="q1_3">Paz</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question-section">
+                <div class="question-title">Q2: ¿De qué depende la felicidad?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q2_1" name="q2" value="Dinero" required>
+                        <label for="q2_1">Dinero</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q2_2" name="q2" value="Amor" >
+                        <label for="q2_2">Amor</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q2_3" name="q2" value="Autoestima" >
+                        <label for="q2_3">Autoestima</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question-section">
+                <div class="question-title">Q3: ¿Es posible estar feliz viviendo con lo más básico, padeciendo desafíos, o sufriendo de alguna discapacidad?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q3_1" name="q3" value="Si" required>
+                        <label for="q3_1">Si</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q3_2" name="q3" value="No" >
+                        <label for="q3_2">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question-section">
+                <div class="question-title">Q4: ¿Es el dinero la base para la felicidad?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q4_1" name="q4" value="Si" required>
+                        <label for="q4_1">Si</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q4_2" name="q4" value="No" >
+                        <label for="q4_2">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question-section">
+                <div class="question-title">Q5: ¿Una buena autoestima es lo primordial para ser feliz?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q5_1" name="q5" value="Si" required>
+                        <label for="q5_1">Si</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q5_2" name="q5" value="No" >
+                        <label for="q5_2">No</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Conversation Section -->
+            <div class="question-section">
+                <div class="question-title">Conversen:</div>
+                <div class="text-input-section">
+                    <label for="conversation" style="color: #666; font-size: 14px;">¿Cómo define cada una la felicidad?</label>
+                    <textarea id="conversation" name="conversation" placeholder="Escribe tu respuesta aquí..." required></textarea>
+                    <div class="error-message" id="textError" style="display: none;"></div>
+                </div>
+                <div class="text-input-section">
+                    <label for="conversation2" style="color: #666; font-size: 14px;">Si cada uno se siente feliz. ¿Cómo está el nivel de autoestima de cada uno y cuál es la conexión entre la autoestima y la felicidad?</label>
+                    <textarea id="conversation2" name="conversation2" placeholder="Escribe tu respuesta aquí..." ></textarea>
+                    <div class="error-message" id="textError2" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-group">
+                <button type="submit" class="submit-btn" id="submitBtn">Enviar Encuesta</button>
+                <button type="reset" class="reset-btn" id="resetBtn">Limpiar</button>
+            </div>
+        </form>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            ✓ ¡Encuesta enviada correctamente!
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section" id="summarySection" style="display: none;">
+            <h2 class="summary-title">Resumen de tus respuestas</h2>
+            <div id="summaryContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Define questions for this survey
+        window.surveyQuestions = {
+            q1: "Q1: ¿Qué es lo que la mayoría de la gente busca?",
+            q2: "Q2: ¿De qué depende la felicidad?",
+            q3: "Q3: ¿Es posible estar feliz viviendo con lo más básico, padeciendo desafíos, o sufriendo de alguna discapacidad?",
+            q4: "Q4: ¿Es el dinero la base para la felicidad?",
+            q5: "Q5: ¿Una buena autoestima es lo primordial para ser feliz?",
+            conversation: "Q6: ¿Cómo define cada una la felicidad?",
+            conversation2: "Q7: Si cada uno se siente feliz. ¿Cómo está el nivel de autoestima de cada uno y cuál es la conexión entre la autoestima y la felicidad?"
+        };
+    </script>
+    <script src="survey.js"></script>
+</body>
+</html>
