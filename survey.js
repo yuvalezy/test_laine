@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
             user_email: userEmail
         };
 
-        emailjs.send("service_i5l7p4t", "template_arwcoqm", templateParams)
+        emailjs.send("service_vhm0ume", "template_arwcoqm", templateParams)
             .then(() => {
                 console.log('Correo enviado exitosamente');
                 successMessage.textContent = '✓ ¡Encuesta enviada correctamente!';
