@@ -1,3 +1,14 @@
+// Global callback for reCAPTCHA v2
+function onSubmitWithRecaptcha(token) {
+    console.log('reCAPTCHA v2 token received:', token);
+    // Get the form and process it
+    const form = document.getElementById('pollForm');
+    const formData = new FormData(form);
+
+    // Process the form submission
+    processFormSubmission(token);
+}
+
 // Survey form functionality
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('pollForm');
@@ -13,6 +24,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
+        // Validation will happen in the reCAPTCHA callback
+    });
+
+    // Function to process form submission after reCAPTCHA validation
+    function processFormSubmission(recaptchaToken) {
 
         // Check for required textarea fields
         const conversationField = document.getElementById('conversation');
@@ -111,8 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Get user email
         const userEmail = responses.email || '';
 
-        // Send email via EmailJS
-        sendEmailJS(answersHtml, userEmail);
+        // Send email via EmailJS (reCAPTCHA token already validated)
+        sendEmailJS(answersHtml, userEmail, recaptchaToken);
 
         // Show summary
         displaySummary(responses);
@@ -126,7 +142,10 @@ document.addEventListener('DOMContentLoaded', function() {
             top: 0,
             behavior: 'smooth'
         });
-    });
+    }
+
+    // Make processFormSubmission accessible globally for reCAPTCHA callback
+    window.processFormSubmission = processFormSubmission;
 
     function displaySummary(responses) {
         let summaryHTML = '';
@@ -199,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return answersHtml;
     }
 
-    function sendEmailJS(answersHtml, userEmail) {
+    function sendEmailJS(answersHtml, userEmail, recaptchaToken) {
         // Check if EmailJS is available
         if (typeof emailjs === 'undefined') {
             console.error('EmailJS no está cargado');
@@ -213,7 +232,8 @@ document.addEventListener('DOMContentLoaded', function() {
             chapter: chapterName,
             answers_html: answersHtml,
             to_email: userEmail,
-            user_email: userEmail
+            user_email: userEmail,
+            'g-recaptcha-response': recaptchaToken
         };
 
         emailjs.send("service_vhm0ume", "template_arwcoqm", templateParams)
