@@ -1,14 +1,3 @@
-// Global callback for reCAPTCHA v2
-function onSubmitWithRecaptcha(token) {
-    console.log('reCAPTCHA v2 token received:', token);
-    // Get the form and process it
-    const form = document.getElementById('pollForm');
-    const formData = new FormData(form);
-
-    // Process the form submission
-    processFormSubmission(token);
-}
-
 // Survey form functionality
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('pollForm');
@@ -18,13 +7,33 @@ document.addEventListener('DOMContentLoaded', function() {
     const summarySection = document.getElementById('summarySection');
     const summaryContent = document.getElementById('summaryContent');
     const textError = document.getElementById('textError');
+    const recaptchaError = document.getElementById('recaptchaError');
 
     // Get questions data from the page
     const questions = window.surveyQuestions || {};
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        // Validation will happen in the reCAPTCHA callback
+
+        // Validate reCAPTCHA
+        const recaptchaResponse = grecaptcha.getResponse();
+        if (!recaptchaResponse) {
+            if (recaptchaError) {
+                recaptchaError.textContent = 'Por favor completa la verificación reCAPTCHA.';
+                recaptchaError.style.display = 'block';
+            }
+            // Scroll to reCAPTCHA
+            document.querySelector('.g-recaptcha').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
+
+        // Clear reCAPTCHA error if shown
+        if (recaptchaError) {
+            recaptchaError.style.display = 'none';
+        }
+
+        // Process form with reCAPTCHA token
+        processFormSubmission(recaptchaResponse);
     });
 
     // Function to process form submission after reCAPTCHA validation
@@ -143,9 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth'
         });
     }
-
-    // Make processFormSubmission accessible globally for reCAPTCHA callback
-    window.processFormSubmission = processFormSubmission;
 
     function displaySummary(responses) {
         let summaryHTML = '';
