@@ -55,7 +55,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>¿Qué tienen en común las situaciones que fortalecen el sentimiento de valía y seguridad en los hombres?</h1>
+        <h1>Después de ver el video, realiza este ejercicio:</h1>
         <form id="pollForm">
 
             <!-- Q1 - Radio -->
@@ -73,27 +73,22 @@
                 </div>
             </div>
 
-            <!-- Q2 - Checkbox with Todos -->
+            <!-- Q2 - Radio -->
             <div class="question-section">
                 <div class="question-title">Q2: ¿Durante qué período se manifiestan los elementos que contribuyen a la autoestima de los hombres?</div>
-                <div class="checkbox-group">
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="q2_1" name="q2" value="La infancia">
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q2_1" name="q2" value="La infancia" required>
                         <label for="q2_1">La infancia</label>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="q2_2" name="q2" value="La adolescencia">
+                    <div class="option">
+                        <input type="radio" id="q2_2" name="q2" value="La adolescencia">
                         <label for="q2_2">La adolescencia</label>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="q2_3" name="q2" value="La adultez">
+                    <div class="option">
+                        <input type="radio" id="q2_3" name="q2" value="La adultez">
                         <label for="q2_3">La adultez</label>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="q2_todos" name="q2" value="Todos">
-                        <label for="q2_todos"><strong>Todos</strong></label>
-                    </div>
-                    <div class="select-all-warning">* Si selecciona "Todos", se marcarán todas las opciones</div>
                 </div>
             </div>
 
@@ -151,35 +146,6 @@
     </div>
 
     <script>
-        // Handle "Todos" checkbox behavior
-        const q2TodosCheckbox = document.getElementById('q2_todos');
-        const q2OtherCheckboxes = [
-            document.getElementById('q2_1'),
-            document.getElementById('q2_2'),
-            document.getElementById('q2_3')
-        ];
-
-        q2TodosCheckbox.addEventListener('change', function() {
-            if (this.checked) {
-                q2OtherCheckboxes.forEach(checkbox => {
-                    checkbox.checked = true;
-                });
-            }
-        });
-
-        q2OtherCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                // If any checkbox is unchecked, uncheck "Todos"
-                if (!this.checked) {
-                    q2TodosCheckbox.checked = false;
-                }
-                // If all are checked, check "Todos"
-                if (q2OtherCheckboxes.every(cb => cb.checked)) {
-                    q2TodosCheckbox.checked = true;
-                }
-            });
-        });
-
         // Define questions for this survey
         window.surveyQuestions = {
             q1: "Q1: ¿Qué tienen en común las situaciones que fortalecen el sentimiento de valía y seguridad en los hombres?",

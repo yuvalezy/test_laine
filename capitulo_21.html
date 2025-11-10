@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capítulo 21 - Despues de ver el video, realiza este ejercicio:</title>
+    <title>Capítulo 21 - Después de ver el video, realiza este ejercicio:</title>
     <link rel="stylesheet" href="survey.css">
     <style>
         .checkbox-group {
@@ -48,7 +48,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Despues de ver el video, realiza este ejercicio:</h1>
+        <h1>Después de ver el video, realiza este ejercicio:</h1>
         <form id="pollForm">
             <!-- Q1 -->
             <div class="question-section">
@@ -88,51 +88,51 @@
                 </div>
             </div>
 
-            <!-- Q3 - Checkbox -->
+            <!-- Q3 - Radio -->
             <div class="question-section">
                 <div class="question-title">Q3: ¿Por qué vale la pena hacer nuestro mayor esfuerzo para que el matrimonio funcione?</div>
-                <div class="checkbox-group">
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="q3_1" name="q3" value="Porque una buena relación fortalece nuestra autoestima y salud mental">
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q3_1" name="q3" value="Porque una buena relación fortalece nuestra autoestima y salud mental" required>
                         <label for="q3_1">Porque una buena relación fortalece nuestra autoestima y salud mental</label>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="q3_2" name="q3" value="Porque impacta directamente en la estabilidad emocional de nuestra familia">
+                    <div class="option">
+                        <input type="radio" id="q3_2" name="q3" value="Porque impacta directamente en la estabilidad emocional de nuestra familia">
                         <label for="q3_2">Porque impacta directamente en la estabilidad emocional de nuestra familia</label>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="q3_3" name="q3" value="Porque contribuye a una sociedad más sana y equilibrada">
+                    <div class="option">
+                        <input type="radio" id="q3_3" name="q3" value="Porque contribuye a una sociedad más sana y equilibrada">
                         <label for="q3_3">Porque contribuye a una sociedad más sana y equilibrada</label>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="q3_4" name="q3" value="Porque forma parte del plan y propósito de vida compartido">
+                    <div class="option">
+                        <input type="radio" id="q3_4" name="q3" value="Porque forma parte del plan y propósito de vida compartido">
                         <label for="q3_4">Porque forma parte del plan y propósito de vida compartido</label>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="q3_5" name="q3" value="Todas las anteriores">
+                    <div class="option">
+                        <input type="radio" id="q3_5" name="q3" value="Todas las anteriores">
                         <label for="q3_5">Todas las anteriores</label>
                     </div>
                 </div>
             </div>
 
-            <!-- Q4 - Checkbox -->
+            <!-- Q4 - Radio -->
             <div class="question-section">
                 <div class="question-title">Q4: ¿Qué crees que mantiene viva la amistad dentro del matrimonio?</div>
-                <div class="checkbox-group">
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="q4_1" name="q4" value="Reír juntos y disfrutar lo cotidiano">
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q4_1" name="q4" value="Reír juntos y disfrutar lo cotidiano" required>
                         <label for="q4_1">Reír juntos y disfrutar lo cotidiano</label>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="q4_2" name="q4" value="Poder confiar y contar el uno con el otro">
+                    <div class="option">
+                        <input type="radio" id="q4_2" name="q4" value="Poder confiar y contar el uno con el otro">
                         <label for="q4_2">Poder confiar y contar el uno con el otro</label>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="q4_3" name="q4" value="Sentirse parte del mismo equipo incluso en los días difíciles">
+                    <div class="option">
+                        <input type="radio" id="q4_3" name="q4" value="Sentirse parte del mismo equipo incluso en los días difíciles">
                         <label for="q4_3">Sentirse parte del mismo equipo incluso en los días difíciles</label>
                     </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="q4_4" name="q4" value="Todas las anteriores">
+                    <div class="option">
+                        <input type="radio" id="q4_4" name="q4" value="Todas las anteriores">
                         <label for="q4_4">Todas las anteriores</label>
                     </div>
                 </div>
@@ -161,7 +161,7 @@
             <div class="question-section">
                 <div class="question-title">Conversen:</div>
                 <div class="text-input-section">
-                    <label for="conversation" style="color: #666; font-size: 14px;">De todo lo que vieron y cuales son los pasos que pueden adoptar para alcanzar el matrimonio que merecen</label>
+                    <label for="conversation" style="color: #666; font-size: 14px;">Después de ver todos los videos ¿qué pasos pueden dar para alcanzar el matrimonio que merecen?</label>
                     <textarea id="conversation" name="conversation" placeholder="Escribe tu respuesta aquí..." required></textarea>
                     <div class="error-message" id="textError" style="display: none;"></div>
                 </div>
@@ -194,7 +194,7 @@
             q3: "Q3: ¿Por qué vale la pena hacer nuestro mayor esfuerzo para que el matrimonio funcione?",
             q4: "Q4: ¿Qué crees que mantiene viva la amistad dentro del matrimonio?",
             q5: "Q5: ¿Qué es lo más importante cuando aparecen los desafíos?",
-            conversation: "De todo lo que vieron y cuales son los pasos que pueden adoptar para alcanzar el matrimonio que merecen"
+            conversation: "Después de ver todos los videos ¿qué pasos pueden dar para alcanzar el matrimonio que merecen?"
         };
     </script>
     <script src="survey.js"></script>
