@@ -212,8 +212,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             answersHtml += `
                 <tr>
-                    <td style="padding: 12px; border: 1px solid #ddd; background-color: #f9f9f9; font-weight: 600;">${questionText}</td>
-                    <td style="padding: 12px; border: 1px solid #ddd;">${formattedValue}</td>
+                    <td style="padding: 12px; border: 1px solid #ddd; background-color: #667eea; color: white; font-weight: 600;">${questionText}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border: 1px solid #ddd; background-color: #f9f9f9;">${formattedValue}</td>
                 </tr>
             `;
         }
