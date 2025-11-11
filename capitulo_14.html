@@ -128,11 +128,15 @@
                 </div>
             </div>
 
+            <!-- reCAPTCHA -->
+            <div class="question-section">
+                <div class="g-recaptcha" data-sitekey="6LeyoggsAAAAAAgXzEg9PAC9ypZtr-yyc24cAnN_"></div>
+                <div class="error-message" id="recaptchaError" style="display: none;"></div>
+            </div>
+
             <!-- Buttons -->
             <div class="button-group">
-                <button class="submit-btn g-recaptcha" id="submitBtn"
-                        data-sitekey="6LeyoggsAAAAAAgXzEg9PAC9ypZtr-yyc24cAnN_"
-                        data-callback="onSubmitWithRecaptcha">Enviar Encuesta</button>
+                <button type="submit" class="submit-btn" id="submitBtn">Enviar Encuesta</button>
                 <button type="reset" class="reset-btn" id="resetBtn">Limpiar</button>
             </div>
         </form>
@@ -175,6 +179,6 @@
     <!-- Google reCAPTCHA v2 -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-    <script src="survey.js?v=20250110004"></script>
+    <script src="survey.js?v=20250110005"></script>
 </body>
 </html>

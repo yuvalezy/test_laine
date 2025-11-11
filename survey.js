@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'g-recaptcha-response': recaptchaToken
         };
 
-        emailjs.send("service_okkm3i9", "template_qfww0lq", templateParams)
+        emailjs.send("service_wi007d3", "template_qfww0lq", templateParams)
             .then(() => {
                 console.log('Correo enviado exitosamente');
                 successMessage.textContent = '✓ ¡Encuesta enviada correctamente!';
